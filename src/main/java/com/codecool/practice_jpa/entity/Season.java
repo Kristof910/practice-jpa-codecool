@@ -1,14 +1,10 @@
 package com.codecool.practice_jpa.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -21,12 +17,18 @@ public class Season {
     @GeneratedValue
     private Long id;
 
-    private String name;
-
     private String title;
 
-    private Integer length;
+    private Integer numberOfEpisodes;
 
     private LocalDate releaseDate;
+
+    @ManyToOne
+    private Series series;
+
+    @OneToMany(mappedBy = "season", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @Singular
+    @EqualsAndHashCode.Exclude
+    private Set<Episode> episodes;
 }
 

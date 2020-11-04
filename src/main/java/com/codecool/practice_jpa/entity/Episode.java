@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Data
@@ -21,11 +22,12 @@ public class Episode {
     @GeneratedValue
     private Long id;
 
-    private String name;
-
     private String title;
 
     private Integer length;
 
-    private LocalDate releaseDate;
+    private String description;
+
+    @ManyToOne
+    private Season season;
 }
