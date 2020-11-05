@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
@@ -22,6 +19,7 @@ public class Episode {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false)
     private String title;
 
     private Integer length;

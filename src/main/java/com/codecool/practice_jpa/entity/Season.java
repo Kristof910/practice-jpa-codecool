@@ -17,6 +17,7 @@ public class Season {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false)
     private String title;
 
     private Integer numberOfEpisodes;
@@ -28,6 +29,7 @@ public class Season {
 
     @OneToMany(mappedBy = "season", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @Singular
+    @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<Episode> episodes;
 

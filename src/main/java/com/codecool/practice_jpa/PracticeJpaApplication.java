@@ -4,14 +4,17 @@ import com.codecool.practice_jpa.entity.AgeRating;
 import com.codecool.practice_jpa.entity.Episode;
 import com.codecool.practice_jpa.entity.Season;
 import com.codecool.practice_jpa.entity.Series;
+import com.codecool.practice_jpa.repository.SeasonRepository;
 import com.codecool.practice_jpa.repository.SeriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @SpringBootApplication
 public class PracticeJpaApplication {
@@ -19,11 +22,15 @@ public class PracticeJpaApplication {
     @Autowired
     private SeriesRepository seriesRepository;
 
+    @Autowired
+    private SeasonRepository seasonRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(PracticeJpaApplication.class, args);
     }
 
     @Bean
+    @Profile("production")
     public CommandLineRunner init() {
         return args -> {
             Episode episode1season1 = Episode.builder()
@@ -55,9 +62,9 @@ public class PracticeJpaApplication {
                     .season(season1)
                     .season(season2)
                     .ageRating(AgeRating.AGE_18)
-                    .actorsAndActress("Emilia Clarke")
-                    .actorsAndActress("Peter Dinklage")
-                    .actorsAndActress("Lena Headey")
+                    .actorsAndActress("Bryan Cranston")
+                    .actorsAndActress("Aaron Paul")
+                    .actorsAndActress("Dean Norris")
                     .build();
 
             episode1season1.setSeason(season1);

@@ -18,6 +18,7 @@ public class Series {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false)
     private String title;
 
     private Integer numberOfSeasons;
@@ -26,6 +27,7 @@ public class Series {
 
     @OneToMany(mappedBy = "series", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @Singular
+    @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<Season> seasons;
 
