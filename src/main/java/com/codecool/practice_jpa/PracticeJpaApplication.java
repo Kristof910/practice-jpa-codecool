@@ -1,5 +1,6 @@
 package com.codecool.practice_jpa;
 
+import com.codecool.practice_jpa.entity.AgeRating;
 import com.codecool.practice_jpa.entity.Episode;
 import com.codecool.practice_jpa.entity.Season;
 import com.codecool.practice_jpa.entity.Series;
@@ -37,14 +38,12 @@ public class PracticeJpaApplication {
 
             Season season1 = Season.builder()
                     .title("Season 1")
-                    .numberOfEpisodes(10)
                     .releaseDate(LocalDate.of(2012,4,4))
                     .episode(episode1season1)
                     .build();
 
             Season season2 = Season.builder()
                     .title("Season 2")
-                    .numberOfEpisodes(12)
                     .releaseDate(LocalDate.of(2013,6,8))
                     .episode(episode1season2)
                     .build();
@@ -55,12 +54,21 @@ public class PracticeJpaApplication {
                     .price(200.0)
                     .season(season1)
                     .season(season2)
+                    .ageRating(AgeRating.AGE_18)
+                    .actorsAndActress("Emilia Clarke")
+                    .actorsAndActress("Peter Dinklage")
+                    .actorsAndActress("Lena Headey")
                     .build();
 
             episode1season1.setSeason(season1);
             episode1season2.setSeason(season2);
             season1.setSeries(breakingBad);
             season2.setSeries(breakingBad);
+
+            // ?
+            breakingBad.calculateNumberOfSeasons();
+            season1.calculateNumberOfEpisodes();
+            season2.calculateNumberOfEpisodes();
 
             seriesRepository.save(breakingBad);
         };

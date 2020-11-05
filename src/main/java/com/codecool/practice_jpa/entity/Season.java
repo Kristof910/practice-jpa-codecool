@@ -30,5 +30,9 @@ public class Season {
     @Singular
     @EqualsAndHashCode.Exclude
     private Set<Episode> episodes;
+
+    public void calculateNumberOfEpisodes() {
+        numberOfEpisodes = episodes.toArray().length;
+    }
 }
 

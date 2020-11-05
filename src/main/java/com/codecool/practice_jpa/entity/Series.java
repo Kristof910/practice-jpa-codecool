@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -27,5 +28,16 @@ public class Series {
     @Singular
     @EqualsAndHashCode.Exclude
     private Set<Season> seasons;
+
+    @Enumerated(EnumType.STRING)
+    private AgeRating ageRating;
+
+    @ElementCollection
+    @Singular
+    private List<String> actorsAndActresses;
+
+    public void calculateNumberOfSeasons() {
+        numberOfSeasons = seasons.toArray().length;
+    }
 }
 
